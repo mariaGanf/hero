@@ -34,7 +34,8 @@ class Skills
      */
     public function useMagicShield($chance)
     {
-        if ($chance == mt_rand(1, 100)) {
+        if (mt_rand(1,100) <= $chance) {
+
             $damage = $this->fighter->getDefence() / 2;
             $this->printer->output(sprintf("%s used magic shield.", $this->fighter->getName()));
         } else {
@@ -52,7 +53,7 @@ class Skills
      */
     public function useRapidStrike($chance)
     {
-        if ($chance == mt_rand(1, 100)) {
+        if (mt_rand(1,100) <= $chance) {
             $damage = $this->fighter->getStrength() * 2;
             $this->printer->output(sprintf("%s used rapid strike.", $this->fighter->getName()));
         } else {

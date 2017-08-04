@@ -86,7 +86,8 @@ class Battle
             // Orderus attacks
             $attackerStrength = $this->skills->useRapidStrike(10);
             $damage = ($attackerStrength - $secondFighter->getDefence());
-            $secondFighter->setHealth($damage);
+            $newHealth = $secondFighter->getHealth() - $damage;
+            $secondFighter->setHealth($newHealth);
 
             // Printing battle output
             $this->printer->output(sprintf(

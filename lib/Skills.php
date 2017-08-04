@@ -18,10 +18,10 @@ class Skills
 
     /**
      * Skills constructor.
-     * @param Fighters $fighter
+     * @param Fighter $fighter
      * @param Printer|null $printer
      */
-    public function __construct(Fighters $fighter, Printer $printer = null)
+    public function __construct(Fighter $fighter, Printer $printer = null)
     {
         $this->fighter = $fighter;
         $this->printer = new Printer();

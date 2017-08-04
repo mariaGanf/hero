@@ -35,15 +35,15 @@ class Battle
 
     /**
      * Battle constructor.
-     * @param Fighters $firstFighter
-     * @param Fighters $secondFighter
+     * @param Fighter $firstFighter
+     * @param Fighter $secondFighter
      * @param Skills $skills
      * @param Printer|null $printer
      * @param $turns
      */
     public function __construct(
-            Fighters $firstFighter,
-            Fighters $secondFighter,
+            Fighter $firstFighter,
+            Fighter $secondFighter,
             Skills $skills,
             $turns,
             Printer $printer = null
@@ -58,14 +58,14 @@ class Battle
 
     /**
      * Method used for the attack
-     * @param Fighters $firstFighter
-     * @param Fighters $secondFighter
+     * @param Fighter $firstFighter
+     * @param Fighter $secondFighter
      */
-    public function attack(Fighters $firstFighter, Fighters $secondFighter)
+    public function attack(Fighter $firstFighter, Fighter $secondFighter)
     {
         $this->turns--;
 
-        
+
         // If the attacker doesn't have the flag set
         if ($firstFighter->getAttacker() == false) {
 
@@ -162,11 +162,11 @@ class Battle
     }
 
     /**
-     * @param Fighters $firstFighter
-     * @param Fighters $secondFighter
+     * @param Fighter $firstFighter
+     * @param Fighter $secondFighter
 
      */
-    public function firstAttack(Fighters $firstFighter, Fighters $secondFighter)
+    public function firstAttack(Fighter $firstFighter, Fighter $secondFighter)
     {
         // First attack done by the player with highest speed
         if ($firstFighter->getSpeed() > $secondFighter->getSpeed()) {

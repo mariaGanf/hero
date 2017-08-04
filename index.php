@@ -2,7 +2,7 @@
 require_once('autoloader.php');
 spl_autoload_register('Autoloader::loader');
 
-$orderus = new Fighters(
+$orderus = new Fighter(
     'Orderus',
     mt_rand(70, 100),
     mt_rand(70, 80),
@@ -11,7 +11,7 @@ $orderus = new Fighters(
     mt_rand(10, 30)
 );
 
-$beast = new Fighters(
+$beast = new Fighter(
     'WildBeast',
     mt_rand(60, 90),
     mt_rand(60, 90),

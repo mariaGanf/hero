@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Class Fighters
+ * Class Fighter
  */
-class Fighters
+class Fighter
 {
     /**
      * @var int
@@ -41,7 +41,7 @@ class Fighters
     private $attacker;
 
     /**
-     * Fighters constructor.
+     * Fighter constructor.
      * @param $name
      * @param $health
      * @param $strength

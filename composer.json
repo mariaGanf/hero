@@ -1,0 +1,17 @@
+{
+  "name": "mariaGanf/hero",
+  "require": {
+    "php": ">=7.0"
+  },
+  "authors": [
+    {
+      "name": "Maria Ganfaleanu",
+      "email": "maria.ganfaleanu@gmail.com"
+    }
+  ],
+  "autoload": {
+    "classmap": [
+      "src/"
+    ]
+  }
+}

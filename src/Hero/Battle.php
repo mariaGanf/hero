@@ -1,4 +1,7 @@
 <?php
+namespace Hero;
+
+use Hero\Printer\Printer;
 
 /**
  * Class Battle
@@ -34,6 +37,11 @@ class Battle
     private $turns;
 
     /**
+     * @var Fighter
+     */
+    private $attacker;
+
+    /**
      * Battle constructor.
      * @param Fighter $firstFighter
      * @param Fighter $secondFighter
@@ -57,6 +65,23 @@ class Battle
     }
 
     /**
+     * @return mixed
+     */
+    public function getAttacker()
+    {
+        return $this->attacker;
+    }
+
+    /**
+     * @param Fighter $attacker
+     * @internal param mixed $luck
+     */
+    public function setAttacker(Fighter $attacker)
+    {
+        $this->attacker = $attacker;
+    }
+
+    /**
      * Method used for the attack
      * @param Fighter $firstFighter
      * @param Fighter $secondFighter
@@ -65,23 +90,22 @@ class Battle
     {
         $this->turns--;
 
-
         // If the attacker doesn't have the flag set
-        if ($firstFighter->getAttacker() == false) {
+        if ($this->getAttacker() !== $firstFighter) {
 
             // This means he is a defender and gets lucky
             if ($firstFighter->getLuck() == mt_rand(1 , 100)) {
                 $this->printer->output(sprintf("%s got lucky this turn.", $secondFighter->getName()));
 
                 // Swap roles
-                $firstFighter->setAttacker(true);
-                $secondFighter->setAttacker(false);
+                $this->setAttacker($firstFighter);
+
                 return;
             }
         }
 
         // If the player is Orderus, he can use use magic shield and rapid strike
-        if ($firstFighter->getName() == 'Orderus' && $firstFighter->getAttacker() == true) {
+        if ($firstFighter->getName() == 'Orderus' && $this->getAttacker() == $firstFighter) {
 
             // Orderus attacks
             $attackerStrength = $this->skills->useRapidStrike(10);
@@ -98,7 +122,7 @@ class Battle
                 )
             );
 
-        } elseif ($secondFighter->getName() == "Orderus" && $secondFighter->getAttacker() == false) {
+        } elseif ($secondFighter->getName() == "Orderus" && $this->getAttacker() == $secondFighter) {
             // Orderus defends
             $defenderDefence = $this->skills->useMagicShield(20);
             $damage = $firstFighter->getStrength() - $defenderDefence;
@@ -126,7 +150,7 @@ class Battle
         $this->turns--;
 
         // First attack occurs
-        $this->firstAttack($this->firstFighter, $this->secondFighter);
+        $this->getFirstAttacker($this->firstFighter, $this->secondFighter);
 
         while ($this->turns > 0) {
 
@@ -150,14 +174,11 @@ class Battle
                 // switch players after every attack
                 $this->attack($this->firstFighter, $this->secondFighter);
 
-                if ($this->firstFighter->getAttacker()) {
-                    $this->firstFighter->setAttacker(false);
-                    $this->secondFighter->setAttacker(true);
+                if ($this->getAttacker() == $this->firstFighter) {
+                    $this->setAttacker($this->secondFighter);
                 } else {
-                    $this->firstFighter->setAttacker(true);
-                    $this->secondFighter->setAttacker(false);
+                    $this->setAttacker($this->firstFighter);
                 }
-
             }
         }
     }
@@ -167,7 +188,7 @@ class Battle
      * @param Fighter $secondFighter
 
      */
-    public function firstAttack(Fighter $firstFighter, Fighter $secondFighter)
+    public function getFirstAttacker(Fighter $firstFighter, Fighter $secondFighter)
     {
         // First attack done by the player with highest speed
         if ($firstFighter->getSpeed() > $secondFighter->getSpeed()) {
@@ -194,12 +215,11 @@ class Battle
             $this->attack($firstFighter, $secondFighter);
         }
 
-        if ($firstFighter->getAttacker() == false) {
-            $firstFighter->setAttacker(true);
-            $secondFighter->setAttacker(false);
+
+        if ($this->getAttacker() == $firstFighter) {
+            $this->setAttacker($secondFighter);
         } else {
-            $firstFighter->setAttacker(false);
-            $secondFighter->setAttacker(true);
+            $this->setAttacker($firstFighter);
         }
     }
 }

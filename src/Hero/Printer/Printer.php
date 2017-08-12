@@ -1,4 +1,5 @@
 <?php
+namespace Hero\Printer;
 
 /**
  * Class Printer

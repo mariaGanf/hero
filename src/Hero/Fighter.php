@@ -1,4 +1,5 @@
 <?php
+namespace Hero;
 
 /**
  * Class Fighter
@@ -34,11 +35,6 @@ class Fighter
      * @var int
      */
     private $luck;
-
-    /**
-     * @var bool
-     */
-    private $attacker;
 
     /**
      * Fighter constructor.
@@ -156,23 +152,6 @@ class Fighter
     }
 
     /**
-     * @return mixed
-     */
-    public function getAttacker()
-    {
-        return $this->attacker;
-    }
-
-    /**
-     * @param $attacker
-     * @internal param mixed $luck
-     */
-    public function setAttacker($attacker)
-    {
-        $this->attacker = $attacker;
-    }
-
-    /**
      * If the player is alive, he has health
      * @return bool
      */
@@ -180,5 +159,4 @@ class Fighter
     {
         return $this->health > 0;
     }
-
 }

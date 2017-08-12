@@ -1,8 +1,7 @@
 <?php
-require_once('autoloader.php');
-spl_autoload_register('Autoloader::loader');
+require_once __DIR__.'/vendor/autoload.php';
 
-$orderus = new Fighter(
+$orderus = new Hero\Fighter(
     'Orderus',
     mt_rand(70, 100),
     mt_rand(70, 80),
@@ -11,7 +10,7 @@ $orderus = new Fighter(
     mt_rand(10, 30)
 );
 
-$beast = new Fighter(
+$beast = new Hero\Fighter(
     'WildBeast',
     mt_rand(60, 90),
     mt_rand(60, 90),
@@ -20,9 +19,9 @@ $beast = new Fighter(
     mt_rand(25, 45)
 );
 
-$printer = new Printer();
-$skills = new Skills($orderus, $printer);
-$battle = new Battle($orderus, $beast, $skills, 20);
+$printer = new Hero\Printer\Printer();
+$skills = new Hero\Skills($orderus, $printer);
+$battle = new Hero\Battle($orderus, $beast, $skills, 20);
 $battle->battle();
 
 ?>

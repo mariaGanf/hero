@@ -1,4 +1,7 @@
 <?php
+namespace Hero;
+
+use Hero\Printer\Printer;
 
 /**
  * Class Skills
